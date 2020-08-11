@@ -58,7 +58,7 @@ export class CadPedidoComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.buscarParamentros();
     //Caso o endPoint de produtos não estiver funcionando descomentar essa linha para obter os produtos inseridos no codigo.
-     this.produtosMock();
+    //this.produtosMock();
    
   }
 
