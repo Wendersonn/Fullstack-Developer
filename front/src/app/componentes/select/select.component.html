@@ -1,0 +1,5 @@
+<select style="width: 100%" name="select" id="select" [(ngModel)]="valor" (change)="valorCombo(valor)">
+    <option *ngFor="let item of list" [value]="item[code]">
+        {{ item[label] }}
+    </option>
+</select>

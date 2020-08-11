@@ -1,0 +1,20 @@
+<table style="width: 100%;">
+    <tr>
+        <th *ngFor="let column of cabecalho">
+            {{column}}
+        </th>
+    </tr>
+    
+    <tr *ngFor="let row of rows">
+        <td *ngFor="let column of referencia">
+            <input *ngIf="column == 'qtde'" type="number" [(ngModel)]="row[column]" (keyup)="calcularTotal(row)">
+            <img *ngIf="column == 'imagemUrl' && row[column] != undefined" style="height: 30px;" [src]="row[column]" alt="Imagem" />
+            <button class="botaoDelete" *ngIf="column == 'del' " (click)="deletarRow(row)">
+                <img style="height: 30px; width: 30px;" [src]="'./assets/icones/icone-apagar.png'" alt="Imagem" />
+            </button>
+            <label *ngIf="column != 'del' && column != 'qtde' && column != 'imagemUrl' && column != 'total' && column != 'precoUnitario' && column != 'valorFrete'">{{row[column]}}</label>
+            <label *ngIf="column === 'precoUnitario' || column === 'total' || column === 'valorFrete'">{{row[column] | moeda}}</label>
+            <hr>
+        </td>
+    </tr>
+</table>

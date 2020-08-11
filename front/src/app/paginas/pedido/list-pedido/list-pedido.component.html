@@ -1,0 +1,15 @@
+<div class="rows" style="background: #E5E5E5; height: 100%;">
+    <br>
+    <h2><b class="labelNovoPedido"> Consulta pedido</b></h2>
+    <br>
+
+    <div class="card card-body" style="width: 96%;  margin-left: 2%;">
+        <div class="row">
+            <img class="imgPedido" [src]="'./assets/icones/icone-pedidos.png'" alt="Imagem" />
+            <label class="labelListaPedido"><b>Pedidos</b></label>
+        </div>
+        <br>
+        <app-data-table [rows]="rows" [headers]="headers"></app-data-table>
+    </div>
+    <br>
+</div>

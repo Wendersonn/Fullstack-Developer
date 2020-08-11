@@ -1,0 +1,95 @@
+<div class="body" style="background-color: lightgray; height: 100%;">
+    <br>
+    <h2><b class="labelNovoPedido"> #Novo pedido</b></h2>
+    <br>
+    <div class="col-md-12">
+        <div class="card card-body">
+            <div class="row">
+                <img class="imagCliente" [src]="'./assets/icones/icone-cliente.png'" alt="Imagem" />
+                <label class="labelCliente">Clientes</label>
+            </div>
+            <div class="col-md-6">
+                <app-select id="clientes" name="clientes" [list]="model.clientes" [code]="'codigo'" [label]="'nome'"
+                    (resultado)="model.codigoCliente = $event"></app-select>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <div class="card card-body">
+            <div class="row">
+                <img style="height: 30px; width: 30px;" [src]="'./assets/icones/icone-carrinho.png'" alt="Imagem" />
+                <label class="labelCarrinho">Carinho</label>
+            </div>
+
+            <div class="col-md-6">
+                <app-select id="produtos" name="produtos" [list]="model.produtos" [code]="'codigo'" [label]="'nome'"
+                    (resultado)="model.codigoProduto = $event" (click)="addProduto(model.codigoProduto)">
+                </app-select>
+            </div>
+            <br>
+            <div class="col-md-12 row"*ngIf="model.carrinho.length == 0">
+                <div class="col-md-12">
+                    <img class="imagCar"
+                        [src]="'./assets/icones/imagem-carrinho-empty-state.png'" alt="Imagem" />
+                </div>
+                <div class="col-md-12" style="text-align: center; margin-left: -1%;">
+                    <label class="carrinhoVazio">Carrinho vazio</label><br>
+                    <label class="carrinhoVazio2"> Nenhum produto foi inserido</label>
+                </div>
+            </div>
+            <app-data-table *ngIf="model.carrinho.length != 0" (returnRow)="atualiarItensPreco($event)"
+                [rows]="model.carrinho" [headers]="headers">
+            </app-data-table>
+        </div>
+    </div>
+    <br>
+    <div class="card card-body" style="width: 98.5%; left: 14px;">
+        <div class="col-md-12 row">
+            <div class="col-md-7">
+                <div class="row">
+                    <img style="height: 30px; width: 30px; margin-left: -29px" [src]="'./assets/icones/icone-total.png'"
+                        alt="Imagem" />
+                    <label class="labelTotalPai">Total</label>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-4">
+                        <label class="labelItens">Itens</label>
+                    </div>
+                    <div class="col-md-8" style="text-align: end;">
+                        <label class="labelValores">R$ {{model.somaItens | moeda}}</label>
+                    </div>
+                </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-4">
+                        <label class="labelFrete">Frete</label>
+                    </div>
+                    <div class="col-md-8" style="text-align: end;">
+                        <label class="labelValores">R$ {{model.valorFrete | moeda}}</label>
+                    </div>
+                </div>
+                <hr class="hrLinha">
+                <div class="col-md-12 row">
+                    <div class="col-md-4">
+                        <label class="labelTotal">Total</label>
+                    </div>
+                    <div class="col-md-8" style="text-align: end;">
+                        <label class="labelValores">R$ {{model.somaItens + model.valorFrete | moeda}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5" style="top: 50px">
+                <div class="col-md-12">
+                    <button type="button" style="width: 100%;height: 50px;" class="btn btn-success"
+                        (click)="finalizarCompra()">Finalizar compra</button>
+                </div>
+                <div class="col-md-12" style="top: 10px;">
+                    <button type="button" (click)="ngOnInit()" style="width: 100%;height: 50px;"
+                        class="btn btn-outline-dark">limpar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+</div>
